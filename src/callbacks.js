@@ -33,6 +33,7 @@ EventEmitter.prototype.removeListener = function (event, callback) {
 };
 
 function CalcPi() {
+  EventEmitter.apply(this, arguments);
 }
 
 CalcPi.isRandomPointInUnitCircle = function () {
@@ -41,5 +42,6 @@ CalcPi.isRandomPointInUnitCircle = function () {
   return x*x + y*y <= 1;
 };
 
+CalcPi.prototype = new EventEmitter();
 CalcPi.prototype.pi = 3.1;
 CalcPi.prototype.precision = 1;
