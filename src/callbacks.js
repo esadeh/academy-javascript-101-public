@@ -40,3 +40,6 @@ CalcPi.isRandomPointInUnitCircle = function () {
       y = Math.random();
   return x*x + y*y <= 1;
 };
+
+CalcPi.prototype.pi = 3.1;
+CalcPi.prototype.precision = 1;

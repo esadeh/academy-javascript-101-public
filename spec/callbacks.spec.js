@@ -156,14 +156,14 @@ describe('callbacks and events', function () {
     describe('general instructions:', function () {
       describe('PiCalc approximates pi using statistical calculation. Use PiCalc.isRandomPointInUnitCircle to approximate pi with any wanted accuracy', function () {
         describe('piCalc.isRandomPointInUnitCircle() - statistically it should converge to pi/4', function () {
-          it('should return true if a random 2d point at [0..1],[0..1] is within the unit circle.', function () {
+          it('should return true iff a random 2d point at [0..1],[0..1] is within the unit circle.', function () {
             var inCircle = 0, i;
-            for (i = 0; i < 10000; i++) {
+            for (i = 0; i < 100000; i++) {
               if (CalcPi.isRandomPointInUnitCircle()) {
                 inCircle++;
               }
             }
-            expect(Math.round(4 * inCircle / 1000)).toBe(31);
+            expect(Math.round(4 * inCircle / 10000)).toBe(31);
           });
         });
       });
