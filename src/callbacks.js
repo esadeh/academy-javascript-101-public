@@ -45,3 +45,6 @@ CalcPi.isRandomPointInUnitCircle = function () {
 CalcPi.prototype = new EventEmitter();
 CalcPi.prototype.pi = 3.1;
 CalcPi.prototype.precision = 1;
+CalcPi.prototype.calc = function(presicion){
+  this.emit('start');
+};
