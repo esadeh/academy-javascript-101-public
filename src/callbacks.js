@@ -32,19 +32,40 @@ EventEmitter.prototype.removeListener = function (event, callback) {
   this._events[event] = _.without(this._events[event], callback)
 };
 
-function CalcPi() {
+function ApproxyPi() {
   EventEmitter.apply(this, arguments);
 }
 
-CalcPi.isRandomPointInUnitCircle = function () {
-  var x = Math.random(),
-      y = Math.random();
-  return x*x + y*y <= 1;
+ApproxyPi.getSeriesItem = function (index) {
+  var sign = index % 2 ? -1 : 1;
+  return sign * 4 / (2 * index + 1);
 };
 
-CalcPi.prototype = new EventEmitter();
-CalcPi.prototype.pi = 3.1;
-CalcPi.prototype.precision = 1;
-CalcPi.prototype.calc = function(presicion){
+ApproxyPi.prototype = new EventEmitter();
+ApproxyPi.prototype.constructor = ApproxyPi;
+ApproxyPi.prototype.pi = 0;
+ApproxyPi.prototype.precision = 0;
+ApproxyPi.prototype.calc = function (presicion) {
+  function improvePrecision() {
+    if (self.precision >= presicion) {
+      self.emit('done');
+    } else {
+      for (var tmp = 0; tmp < 1000; tmp++) {
+        self.pi += ApproxyPi.getSeriesItem(i++);
+      }
+
+      while (ApproxyPi.getSeriesItem(i) < Math.pow(10, -self.precision)) {
+        self.precision++;
+      }
+
+      self.emit('progress');
+      setTimeout(improvePrecision, 0);
+    }
+  }
+
+  var i = 0,
+      self = this;
+
   this.emit('start');
+  improvePrecision();
 };
