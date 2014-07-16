@@ -49,6 +49,9 @@ describe('prototype', function () {
     });
   });
 
+
+
+
   describe('Dog', function () {
     var dog;
     beforeEach(function () {
