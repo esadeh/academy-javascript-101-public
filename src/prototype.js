@@ -17,6 +17,7 @@ Animal.prototype.speak = function(){
 Animal.prototype.type = 'an animal';
 Animal.prototype.legs = 100;
 Animal.prototype.voice='Kukukuchoo';
+
 function Mammal(name) {
     Animal.apply(this, arguments);
 }

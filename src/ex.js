@@ -19,7 +19,7 @@ function createArray(size){
 }
 
 function add(node, tree, whichSide){
-    if (tree === null){
+    if (tree === null) {
        tree = node;
     }
     else {
@@ -60,49 +60,43 @@ function printTree(tree){
                 if (temp.left)
                     arr.push(temp.left);
                 else
-                    arr.push(1)
+                    arr.push(1);
 
                 if (temp.right)
                     arr.push(temp.right);
                 else
                     arr.push(1)
             }
-
-
-
         }
         arrToPrint.push(toPrint);
         console.log(toPrint);
         toPrint = '';
         temp = arr.shift();
         arr.push(0);
-
     }
-
     return arrToPrint;
 }
 function whichSideReg(tree, node){
     if (tree > node) {
-        return 'left'
+        return 'left';
     }
     else {
-        return 'right'
+        return 'right';
     }
 }
 
 var arr = createArray(202);
-
 var root = null;
 
 arr.forEach(function(entry) {
-    var node = new Node(entry)
+    var node = new Node(entry);
     root = add(node, root, whichSideReg);
 });
 
 var arrToPrint = printTree(root);
 var longestLine = arrToPrint[0].length;
 
-arrToPrint.forEach(function(item){
+arrToPrint.forEach(function(item) {
    if (item.length>longestLine)
         longestLine = item.length;
 
@@ -116,4 +110,4 @@ arrToPrint.forEach(function(item) {
     //console.log(item);
 });
 
-//console.log(arr.join());
+//console.log(callbacks.join());
